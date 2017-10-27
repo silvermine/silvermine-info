@@ -243,9 +243,7 @@ class SomeClass {
    * Separate array references and arguments by a space following the comma.
    * Empty array and object declarations should not have a space in them
      (e.g. `[]` or `{}`)
-   * Multi-line array and object declarations should:
-      * *always* have a dangling comma for node.js codebases
-      * *never* have a dangling comma for browser-targetted JS codebases
+   * Multi-line array and object declarations should *always* have a dangling comma
 
 Examples:
 
