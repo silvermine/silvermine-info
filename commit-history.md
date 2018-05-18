@@ -145,8 +145,9 @@ post: http://chris.beams.io/posts/git-commit/
 Additional notes:
 
    * We should put **“Refs #xxxxx”** (where xxxxx is the issue number) in the
-     subject all commit messages, preferably as the first thing in the subject.
-      * The article shows it at the end, but git log --oneline shows only the
+     subject of all commit messages, preferably as the first thing in the
+     subject.
+      * The article shows it at the end, but `git log --oneline` shows only the
         subject, and it’s really handy to have the issue number there.
       * In some cases a commit references multiple issues. In that case, you
         can list those issues at the end of the body of the commit message and leave it

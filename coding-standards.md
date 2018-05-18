@@ -34,7 +34,7 @@ or similar entity is an issue. However, keep in mind the following principles:
 ## Acronyms
 
    * Occasionally an acronym may be used in a function or variable name.
-     Examples include LDAP,  IMAP, or API. Whenever this is the case, the acronym
+     Examples include LDAP, IMAP, or API. Whenever this is the case, the acronym
      should be written in all capital letters.
 
 ## Identification
