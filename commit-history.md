@@ -149,9 +149,10 @@ Additional notes:
      subject.
       * The article shows it at the end, but `git log --oneline` shows only the
         subject, and it’s really handy to have the issue number there.
-      * In some cases a commit references multiple issues. In that case, you
-        can list those issues at the end of the body of the commit message and leave it
-        out of the subject.
+      * In some cases a commit references multiple issues. In that case, you can
+        list those issues at the end of the body of the commit message and leave
+        it out of the subject. _See the examples below for acceptable forms when
+        a commit references multiple issues._
    * We don’t have a hard-and-fast 50 char rule for the subject, but should
      really try to keep it under 69 characters.
    * Use markdown formatting in your commit messages, including a space before
@@ -204,4 +205,64 @@ sufficient.
 #       modified:   src/tests/vehicles/DeLorean.test.js
 #       modified:   src/vehicles/DeLorean.js
 #
+```
+
+### Referencing Multiple Issues in One Commit Message
+
+Here are acceptable forms for referencing issues when a single commit references
+multiple issues. Note, though, that some of these example commits may be cases
+where breaking the commit up into multiple commits would be better. If a single
+fix or a change to one block of code does fix multiple issues, though, here are
+the formats that are acceptable for the combined commit message:
+
+```
+Refs #12345, #54321 Because there are only two issues and it fits nicely
+
+The rest of my description goes here ...
+```
+
+Or where you want to provide details about the fix for each issue independently:
+
+```
+Refs multiple: Ensure flux capacitor can reach 1.21 gigawatts when needed
+
+ * Refs #12345: If the car achieved a speed of `>= 89` MPH while the flux
+   capacitor was only getting anywhere `>= 1.00` and `< 1.21` gigawatts from its
+   power source, the computer would put the power source in "limp home" mode,
+   only allowing it to generate roughly 300 watts - enough to power the
+   dashboard displays.
+ * Refs #54321: When the _Mr. Fusion_ generator is being used to power hover
+   mode, and the car is hovering less than 12 feet off the ground, and the car
+   is traveling `>= 32` MPH, the generator would not engage time travel mode,
+   thus not generating the required 1.21 gigawatts necessary to power the flux
+   capacitor.
+```
+
+Or where one change resolves multiple issues, and the list of issues is too long
+to put in the title of the commit:
+
+```
+Refs multiple: Ensure flux capacitor can reach 1.21 gigawatts when needed
+
+In several scenarios the flux capacitor would not reach the required 1.21
+gigawatts of power. For example, if the car achieved a speed of `>= 89` MPH
+while the flux capacitor was only getting anywhere `>= 1.00` and `< 1.21`
+gigawatts, the computer would put the power source in "limp home" mode, only
+allowing it to generate roughly 300 watts - enough to power the dashboard
+displays.
+
+Additionally, when the _Mr. Fusion_ generator is being used to power hover mode,
+and the car is hovering less than 12 feet off the ground, and the car is
+traveling `>= 32` MPH, the generator would not engage time travel mode, thus not
+generating the required 1.21 gigawatts necessary to power the flux capacitor.
+
+Finally, in the case where the primary power source (typically configured to be
+the plutonium nuclear reactor) is not able to generate more than 1 gigawatt of
+power, but the secondary power source is capable of generating the necessary
+remaining power to bring total power output to 1.21 gigawatts, allow a new
+parallel power mode where power from both sources will be sent to the flux
+capacitor. Previously the flux capacitor could only receive power from one
+source at a time.
+
+Refs #12345, #54321, #98765
 ```
