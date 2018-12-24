@@ -9,6 +9,15 @@ any event, if you are contributing to our codebase, it is your responsibility
 to follow these standards. They will be enforced in code reviews.
 
 
+## ES6+ / TypeScript Specific Standards
+
+Many of the standards written in this document were written for our legacy PHP and
+JavaScript (ES5 and earlier) codebases. For our coding standards specific to
+ES6+ / TypeScript, including what operators / patterns we allow or prohibit in our
+codebase, please see our [coding standards specific to ES6+ /
+TypeScript](coding-standards-es6-typescript.md).
+
+
 ## Abbreviations
 
 Abbreviations can be used where it is reasonable and length of a variable name
@@ -94,7 +103,7 @@ Again, the key is readability and clarity.
 
 ### Braces
 
-   * Curly braces appear at the end of the line instead of on a new line. It
+   * Opening curly braces appear at the end of the line instead of on a new line. It
      saves considerable vertical space.
    * Never leave curly braces off of conditionals or loop control statements,
      even if the condition or statement is a single line. Reasons:
@@ -110,9 +119,10 @@ You can note other advantages to both of these rules [in K&R Variant
 
 ### Indentation
 
-*Yes, we know our indentation rules are different than any codebase you have
-ever worked on. We have worked this way for many years and like it. Sorry if
-you do not like it.*
+*Yes, we know our indentation rules are different than any codebase you have ever worked
+on. We have worked this way for many years and like it. Sorry if you do not like it.
+Fortunately for you, we invest heavily in linting, so it should be easy for you to see
+where your indentation doesn't meet our standards and fix it.*
 
    * Indent distance is three spaces.
    * Never use actual tab characters. Please configure your editor such that
@@ -128,19 +138,41 @@ you do not like it.*
      need to declare a variable that will take several lines to initialize, declare
      the variable as one statement and initialize it as a separate statement. This
      makes the code much easier to read and doesn't lead to weird indentation due to
-     `var ` being four characters. See example with `someVariable` below.
+     the keyword (`var` or `let`) and the trailing space (e.g. `var `) being four
+     characters. See example with `someVariable` below.
+        * An exception to this rule is with `const` declarations. Since you cannot
+          initialize a `const` after you have declared it, multi-line `const` declarations
+          are permitted. However, you should use a separate `const` declaration block
+          for each multi-line `const` declaration. See example with `MY_CONST_OBJ` below.
+          Also, see [our ES6-specific
+          standards](coding-standards-es6-typescript.md#variable-declarations).
 
 Example:
 
-```js
+```javascript
 // in SomeFile.js
-var Class = require('class.extend'),
-    _ = require('underscore'),
-    SomeClass;
+const _ = require('underscore'),
+      MY_SINGLE_LINE_CONST = 1,
+      MY_OTHER_SINGLE_LINE_CONST = 2;
 
-SomeClass = Class.extend({
+const MY_CONST_OBJ = {
+   a: 1,
+   b: 2,
+   c: 3,
+};
 
-   myFunction: function doSomething(someVeryLongVariableNameThatShouldNeverActuallyBeUsedInOurCodebase) {
+let array = [ 1, 2, 3, 4 ],
+    someObj;
+
+someObj = {
+   a: 1,
+   b: 2,
+   c: 3,
+};
+
+class SomeClass {
+
+   myFunction(someVeryLongVariableNameThatShouldNeverActuallyBeUsedInOurCodebase) {
       var someVariable;
 
       someVariable = _.isEmpty(someVeryLongVariableNameThatShouldNeverActuallyBeUsedInOurCodebase) ?
@@ -148,7 +180,7 @@ SomeClass = Class.extend({
          theFalsePartIsIndentedTheSame;
    }
 
-})
+}
 ```
 
    * Where you have a chained set of function calls that will span two lines,
@@ -158,7 +190,7 @@ SomeClass = Class.extend({
 
 Examples:
 
-```js
+```javascript
 // in SomeFile.js
 function doSomethingEventually(bar) {
    return Q(bar)
@@ -252,7 +284,7 @@ Examples:
 $x = array( 'a' => 1, 'b' => 2, 'c' => 3 );
 ```
 
-```js
+```javascript
 var foo = [ 1, 2, 3 ],
     bar = [],
     baz = {},
@@ -268,6 +300,8 @@ var foo = [ 1, 2, 3 ],
      words in the name.
    * **Instance** functions are named using camelCase (see [the
      glossary](#glossary)).
+   * **Private** and **protected** functions are named using camelCase
+     preceded by an underscore. (e.g. `_myProtectedFunction()`)
    * Describe everything the function does by its name. A very long or compound
      name likely indicates that you need to break the function up into smaller ones.
       * If the function returns a value, it is often good to name the function
@@ -313,16 +347,21 @@ Each function must have a header. It should be formatted similar to the followin
    * Enter a description of the purpose of the function on the line after the
      opening comment symbol.
    * Add a @param entry for each function parameter.
-      * Include the type of the expected parameter.
+      * Include the type of the expected parameter, unless using a statically
+        typed language, such as TypeScript (see [our ES6-specific
+        standards](coding-standards-es6-typescript.md)).
       * Include a description of the purpose of the parameter.
       * If the parameter is optional, specify that and what the default is.
       * Document assumptions about parameters. Examples would be expected data
         type, numeric units, range of values, invalid values, and the meaning of status
         code and error values.
-   * Add a @return entry for all functions even if the function does not return
-     a value. If it returns a value, include the data type and a description of the
-     return value. Describe the return value for success and failure conditions. If
-     there is no return value specify "@return void".
+   * Add a @return entry for all functions even if the function does not return a value.
+     If it returns a value, include the data type and a description of the return value.
+     Describe the return value for success and failure conditions. If there is no return
+     value specify "@return void".
+      * If you are using a statically typed language like TypeScript, it is not necessary
+        to specify the data type in the @return doc statement (see
+        [our ES6-specific standards](coding-standards-es6-typescript.md)).
 
 
 ### Control Structures
@@ -372,7 +411,7 @@ Each function must have a header. It should be formatted similar to the followin
 
 Example:
 
-```js
+```javascript
 // SomeFile.js
 function doSomething(someString, someMixedValue) {
    // this is more preferable than modifying the input:
@@ -397,6 +436,9 @@ function doSomething(someString, someMixedValue) {
      uppercase with underscores separating words in the name.
    * **Instance** variables are named using camelCase (see [the
      glossary](#glossary)).
+   * **Private** and **protected** variables are named using camelCase
+     preceded by an underscore (see [our ES6-specific
+     standards](coding-standards-es6-typescript.md#variable-declarations)).
    * **Scoped** variables (those appearing within a function or other control
      structure) are also named with camelCase.
 
@@ -434,7 +476,7 @@ used or called from outside the class.
 
 Example:
 
-```js
+```javascript
 var Class = require('class.extend');
 
 module.exports = Class.extend({
@@ -476,12 +518,12 @@ sanitization](https://xkcd.com/327/) and be sure to protect yourself.
 
 Declare variables within the lowest scope possible. For example:
 
-```
+```javascript
 function a() {
-  var neededForFnA = 1;
+  let neededForFnA = 1;
 
   return function() {
-     var neededForInnerFunctionOnly = 2;
+     let neededForInnerFunctionOnly = 2;
 
      return neededForFnA + neededForInnerFunctionOnly;
   };
@@ -491,9 +533,10 @@ function a() {
 In the example above, `neededForInnerFunctionOnly` is not needed in the scope
 above it (`function a`), so it is declared within the anonymous inner function.
 
-(Note: javascript is function-scoped, not block-scoped as many other languages
-are. That is, a variable declared within an if-statement block, for example, is
-accessible outside of the if-statement block but within the current function.)
+(Note: `var` declarations in javascript are function-scoped, not block-scoped
+as in many other languages. That is, a variable declared with `var` within an
+if-statement block, for example, is accessible outside of the if-statement
+block but within the current function.)
 Declare the variable at the top of this scope, **before** any other statements.
 (In javascript this should appear within a single `var` statement.) If you need
 more explanation of this see http://eslint.org/docs/rules/vars-on-top and in
@@ -502,8 +545,8 @@ particular the resources listed on that page about variable hoisting.
 Variables that are initialized with a value should be declared before those
 that are not initialized with a value. For example:
 
-```
-var a = 1,
+```javascript
+let a = 1,
     b = 2,
     c, d;
 ```
