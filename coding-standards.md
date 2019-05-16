@@ -45,6 +45,23 @@ or similar entity is an issue. However, keep in mind the following principles:
    * Occasionally an acronym may be used in a function or variable name.
      Examples include LDAP, IMAP, or API. Whenever this is the case, the acronym
      should be written in all capital letters.
+   * When the first letter of an acronym is also the first letter of an object property
+     or function name, the entire acronym should be lowercase:
+     ```javascript
+        // Right:
+        const apiConfig = () => {
+           // ...
+           apiAddress: process.env.API_ADDRESS || '0.0.0.0',
+           // ...
+        };
+
+        // Wrong:
+        const APIConfig = () => {
+           // ...
+           APIAddress: process.env.API_ADDRESS || '0.0.0.0',
+           // ...
+        };
+     ```
 
 ## Identification
 
