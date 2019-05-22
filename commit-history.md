@@ -138,23 +138,41 @@ git rebase -i ${MERGE_BASE}
 
 ## Commit Messages
 
-We care a great deal about having good commit messages. Chris Beams wrote a
-good blog post about why good commit messages matter. Please read and apply his
-post: http://chris.beams.io/posts/git-commit/
+We care a great deal about having good commit messages. In fact, we care so much that we
+use commitlint in most of our repos to ensure properly formatted commit messages. Chris
+Beams wrote a good blog post about why good commit messages matter. Please read and apply
+his post: https://chris.beams.io/posts/git-commit/
 
 Additional notes:
 
-   * We should put **“Refs #xxxxx”** (where xxxxx is the issue number) in the
-     subject of all commit messages, preferably as the first thing in the
-     subject.
+   * The commit must start with a type followed by a colon and a space. Possible
+     types are:
+      * **build**: Changes that affect the build system or external dependencies.
+      * **chore**: Other changes that don't modify src or test files. Also used
+        for releases.
+      * **ci**: Changes to our CI configuration files and scripts.
+      * **config**: Changes to how a service runs.
+      * **docs**: Changes only affecting documentation.
+      * **feat**: A new feature.
+      * **fix**: A bug fix.
+      * **sub(type)**: Any smaller chunk of a defined type.
+         * For example: sub(feat): some small part of my feature
+      * **perf**: A code change that improves performance.
+      * **refactor**: A code change that neither fixes a bug nor adds a feature.
+      * **revert**: Reverts a previous commit.
+      * **style**: Changes that do not affect the meaning of the code
+        (white-space, formatting, missing semi-colons, etc.)
+      * **test**: Adding missing tests or correcting existing tests.
+   * We should put **(#xxxxx)** (where xxxxx is the issue number) in the
+     subject of all commit messages as the last item.
       * The article shows it at the end, but `git log --oneline` shows only the
         subject, and it’s really handy to have the issue number there.
       * In some cases a commit references multiple issues. In that case, you can
         list those issues at the end of the body of the commit message and leave
         it out of the subject. _See the examples below for acceptable forms when
         a commit references multiple issues._
-   * We don’t have a hard-and-fast 50 char rule for the subject, but should
-     really try to keep it under 69 characters.
+   * The header (type + subject + issue #) must be no more than 72 characters long.
+   * The max line length of the body is 90 characters.
    * Use markdown formatting in your commit messages, including a space before
      either an asterisk or a numbered list if doing ordered/unordered lists. This
      formats them properly in most source control and project management systems.
@@ -167,7 +185,7 @@ Here is an example of a commit we might craft. It explains what and why more
 than how. The how is shown by seeing the code changes with `git show $hash`.
 
 ```
-Refs #12345 Remove flux capacitor from DeLorean
+feat: Remove flux capacitor from DeLorean (#12345)
 
 The annual corporate meeting will occur on October 3, 2015 this year,
 and big announcements will be made at that time. However, Marty McFly
@@ -179,9 +197,12 @@ announcements, which we need to prevent.
 
 There were several ways we could have prevented this from happening:
 
- 1. Intercept the lightning in front of courthouse on November 12, 1955 at precisely 10:04pm, trapping both Marty and the Doc in 1955
- 2. Destroy the partial bridge over the Shonash/Clayton/Eastwood Ravine prior to September 4, 1885
- 3. Remove the flux capacitor from the DeLorean before Marty and the Doc could take their first trip on October 21, 1985
+ 1. Intercept the lightning in front of courthouse on November 12, 1955 at precisely
+    10:04pm, trapping both Marty and the Doc in 1955
+ 2. Destroy the partial bridge over the Shonash/Clayton/Eastwood Ravine prior to
+    September 4, 1885
+ 3. Remove the flux capacitor from the DeLorean before Marty and the Doc could take their
+    first trip on October 21, 1985
 
 I chose option three because I was actually alive at the time. If I'd
 chosen options one or two it would have required that I travel back to
@@ -216,7 +237,7 @@ fix or a change to one block of code does fix multiple issues, though, here are
 the formats that are acceptable for the combined commit message:
 
 ```
-Refs #12345, #54321 Because there are only two issues and it fits nicely
+fix: There are only two issues and it fits nicely (#12345, #54321)
 
 The rest of my description goes here ...
 ```
@@ -224,7 +245,7 @@ The rest of my description goes here ...
 Or where you want to provide details about the fix for each issue independently:
 
 ```
-Refs multiple: Ensure flux capacitor can reach 1.21 gigawatts when needed
+feat: Ensure flux capacitor can reach 1.21 gigawatts when needed
 
  * Refs #12345: If the car achieved a speed of `>= 89` MPH while the flux
    capacitor was only getting anywhere `>= 1.00` and `< 1.21` gigawatts from its
@@ -242,7 +263,7 @@ Or where one change resolves multiple issues, and the list of issues is too long
 to put in the title of the commit:
 
 ```
-Refs multiple: Ensure flux capacitor can reach 1.21 gigawatts when needed
+feat: Ensure flux capacitor can reach 1.21 gigawatts when needed
 
 In several scenarios the flux capacitor would not reach the required 1.21
 gigawatts of power. For example, if the car achieved a speed of `>= 89` MPH
