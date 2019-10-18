@@ -143,6 +143,8 @@ use commitlint in most of our repos to ensure properly formatted commit messages
 Beams wrote a good blog post about why good commit messages matter. Please read and apply
 his post: https://chris.beams.io/posts/git-commit/
 
+It's also worth reading this post: https://fatbusinessman.com/2019/my-favourite-git-commit
+
 Additional notes:
 
    * The commit must start with a type followed by a colon and a space. Possible
