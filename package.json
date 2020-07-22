@@ -1,0 +1,32 @@
+{
+  "name": "silvermine-info",
+  "version": "1.0.0",
+  "description": "Standards documentation for Silvermine.",
+  "main": "index.js",
+  "scripts": {
+    "commitlint": "./node_modules/.bin/commitlint --from df3e67a",
+    "test": "check-node-version --npm 6.13.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/silvermine/silvermine-info.git"
+  },
+  "keywords": [
+    "markdown",
+    "coding",
+    "standards"
+  ],
+  "author": "Jeremy Thomerson",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/silvermine/silvermine-info/issues"
+  },
+  "homepage": "https://github.com/silvermine/silvermine-info#readme",
+  "devDependencies": {
+    "@silvermine/eslint-config": "3.0.0-rc.0",
+    "@silvermine/standardization": "1.0.1",
+    "eslint": "6.8.0",
+    "grunt": "1.2.1",
+    "grunt-eslint": "23.0.0"
+  }
+}
