@@ -1,0 +1,3 @@
+{
+   "extends": "@silvermine/eslint-config/node"
+}
