@@ -1,0 +1,13 @@
+language: node_js
+node_js:
+  - "node" # Latest node version
+  - "lts/*" # Latest LTS version
+  - "12"
+  - "10"
+
+before_install: npm i -g npm@6.13.4
+
+script:
+   - grunt standards
+   - npm test
+   - commitlint-travis
