@@ -573,8 +573,31 @@ let a = 1,
 
 ### Naming
 
-   * Class filenames should be named the same as the class with the addition of
-     the file type suffix (e.g. `User.php` or `User.js`)
+   * Files that export a function, an object (or pretty much anything other than a class),
+     or that do not export anything should be named with lowercase words separated by
+     dashes (kebab-case).
+
+      ```javascript
+      // Example file named: my-function-or-object.ts
+
+      // Example file exports:
+      export (): boolean => {
+        return false;
+      }
+     ```
+
+   * Files that export a Class should be named the same as the class (PascalCase) with the
+     addition of the file type suffix (e.g. `User.php` or `User.js`).
+
+      ```javascript
+      // Example file named: MyClass.ts
+
+      // Example file exports:
+      export class MyClass {
+         // Implementation
+      }
+      ```
+
    * Tests in our JS codebases are named `ClassTheyAreTesting.test.js`
 
 
