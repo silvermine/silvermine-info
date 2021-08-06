@@ -73,12 +73,11 @@ messages.
 
 ### Naming
 
-Class names should be nouns, using UpperCamelCase (see [the
-glossary](#glossary)). Try to keep your class names simple and descriptive.
-Many classes represent the data stored in a single record of a table. In that
-case the class should be named the same as the table, although depending on the
-system you are working on, the table may be the plural form of the noun whereas
-class names are always the singular form of the noun.
+Class names should be nouns, using PascalCase (see [the glossary](#glossary)). Try to keep
+your class names simple and descriptive. Many classes represent the data stored in a
+single record of a table. In that case the class should be named the same as the table,
+although depending on the system you are working on, the table may be the plural form of
+the noun whereas class names are always the singular form of the noun.
 
 
 ## Formatting
@@ -313,8 +312,8 @@ var foo = [ 1, 2, 3 ],
 
 ### Naming
 
-   * **Static** functions are named all lower case with underscores separating
-     words in the name.
+   * **Static** functions are named all snake_case (see [the
+     glossary](#glossary)).
    * **Instance** functions are named using camelCase (see [the
      glossary](#glossary)).
    * **Private** and **protected** functions are named using camelCase
@@ -447,17 +446,15 @@ function doSomething(someString, someMixedValue) {
 
 ### Naming
 
-   * **Static** variables are named all lowercase with underscores separating
-     words in the name.
+   * **Static** variables are named snake_case  (see [the glossary](#glossary)).
    * **Constants** (or publicly-accessible static variables) are named all
-     uppercase with underscores separating words in the name.
-   * **Instance** variables are named using camelCase (see [the
-     glossary](#glossary)).
-   * **Private** and **protected** variables are named using camelCase
-     preceded by an underscore (see [our ES6-specific
+     UPPER_SNAKE_CASE (see [the glossary](#glossary)).
+   * **Instance** variables are named using camelCase (see [the glossary](#glossary)).
+   * **Private** and **protected** variables are named using camelCase preceded by an
+     underscore (see [our ES6-specific
      standards](coding-standards-es6-typescript.md#variable-declarations)).
-   * **Scoped** variables (those appearing within a function or other control
-     structure) are also named with camelCase.
+   * **Scoped** variables (those appearing within a function or other control structure)
+     are also named with camelCase.
 
 Other general principles to use in naming your variables:
 
@@ -609,9 +606,8 @@ history guidelines.
 
 ## Glossary
 
-   * **UpperCamelCase** (also known as **PascalCase**): mixed case with the
-     first letter of the word and the first letter each internal joined word
-     capitalized.
+   * **PascalCase** (also known as **UpperCamelCase**): mixed case with the first letter
+     of the word and the first letter each internal joined word capitalized.
       * `ThisIsAnExample`
       * `thisIsNotAnExample`: see *camelCase*
    * **camelCase**: as we use it in this document, this means a text element
@@ -620,3 +616,6 @@ history guidelines.
      element *not* capitalized.
       * `thisIsAnExample`
       * `ThisIsNotAnExample`: see *UpperCamelCase*
+   * **kebab-case**: all lowercase, with a hyphen separating words
+   * **snake_case**: all lowercase, with an underscore separating words
+   * **UPPER_SNAKE_CASE**: all uppercase, with an underscore separating words
