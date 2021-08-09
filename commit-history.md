@@ -126,14 +126,46 @@ rebase off the common ancestor of my feature branch?**
 
 This is a two-step process:
 
-```
+```bash
 # Find the common ancestory between your branch and the branch you are trying to
 # merge into (in this case the merge target is master):
-MERGE_BASE=$(git merge-base master my_branch)
+MERGE_BASE=$(git merge-base origin/master HEAD)
 
 # Then do your interactive rebase off of that commit:
 git rebase -i ${MERGE_BASE}
 ```
+
+The simple one-line way to do this is:
+
+```bash
+git rebase -i $(git merge-base origin/master HEAD)
+```
+
+
+#### Using Fixup Commits and Autosquash
+
+Another tip for this workflow is to use "fixup" commits. Imagine the scenario where you
+pushed a branch that has two commits in it, aaaabbbb and ccccdddd. You receive feedback
+where some changes are needed, and some of those changes were in each commit. Here's the
+workflow for one of the easier methods of making those changes:
+
+```bash
+# Step 1: Make all of the requested changes
+# Step 2: Add only the changes from the first commit, aaaabbbb
+git add -p
+# Step 3: Commit those changes, using the "--fixup" flag:
+git commit --fixup=aaaabbbb
+# Step 4: Now add any changes for the next commit, ccccdddd
+git add -p
+# Step 5: Again, commit those changes using the "--fixup" flag:
+git commit --fixup=ccccdddd
+# Step 6: Rebase using the command above, but add the "--autosquash" flag:
+git rebase -i $(git merge-base origin/master HEAD) --autosquash
+```
+
+The autosquash flag will automatically move your fixup commits to the proper place in the
+rebase command list, and will make them "fixup" instead of "pick". As long as there are no
+merge conflicts with each edit, this process should complete easily.
 
 
 ## Commit Messages
