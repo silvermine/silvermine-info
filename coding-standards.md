@@ -47,6 +47,7 @@ or similar entity is an issue. However, keep in mind the following principles:
      should be written in all capital letters.
    * When the first letter of an acronym is also the first letter of an object property
      or function name, the entire acronym should be lowercase:
+
      ```javascript
         // Right:
         const apiConfig = () => {
@@ -154,14 +155,14 @@ where your indentation doesn't meet our standards and fix it.*
      need to declare a variable that will take several lines to initialize, declare
      the variable as one statement and initialize it as a separate statement. This
      makes the code much easier to read and doesn't lead to weird indentation due to
-     the keyword (`var` or `let`) and the trailing space (e.g. `var `) being four
+     the keyword (`var` or `let`) and the trailing space (e.g. `var`) being four
      characters. See example with `someVariable` below.
-        * An exception to this rule is with `const` declarations. Since you cannot
-          initialize a `const` after you have declared it, multi-line `const` declarations
-          are permitted. However, you should use a separate `const` declaration block
-          for each multi-line `const` declaration. See example with `MY_CONST_OBJ` below.
-          Also, see [our ES6-specific
-          standards](coding-standards-es6-typescript.md#variable-declarations).
+      * An exception to this rule is with `const` declarations. Since you cannot
+        initialize a `const` after you have declared it, multi-line `const` declarations
+        are permitted. However, you should use a separate `const` declaration block
+        for each multi-line `const` declaration. See example with `MY_CONST_OBJ` below.
+        Also, see [our ES6-specific
+        standards](coding-standards-es6-typescript.md#variable-declarations).
 
 Example:
 
@@ -279,7 +280,11 @@ class SomeClass {
       * But, but, but, why do I need newlines at the end of my files? See [this
         answer](http://stackoverflow.com/a/729795/1011988) on StackExchange. Then try
         this:
-         * `echo -n 'this is a test' > /tmp/test-nonewline.txt && echo 'this is a test' > /tmp/test-newline.txt && wc -l /tmp/test-*newline.txt`
+
+        ```bash
+        echo -n 'this is a test' > /tmp/test-nonewline.txt && echo 'this is a test' > /tmp/test-newline.txt && wc -l /tmp/test-*newline.txt`
+        ```
+
          * Notice that the line that you echoed to the "nonewline" file doesn't
            get counted. All sorts of *nix tools start breaking if you don't terminate each
            line with a newline character.
@@ -347,7 +352,7 @@ var foo = [ 1, 2, 3 ],
 
 Each function must have a header. It should be formatted similar to the following code snippet:
 
-```
+```javascript
   /**
    * Copy fields from this object to the object that you pass in, returning the names
    * of the fields that were edited on the object you passed in.
@@ -553,7 +558,7 @@ if-statement block, for example, is accessible outside of the if-statement
 block but within the current function.)
 Declare the variable at the top of this scope, **before** any other statements.
 (In javascript this should appear within a single `var` statement.) If you need
-more explanation of this see http://eslint.org/docs/rules/vars-on-top and in
+more explanation of this see <http://eslint.org/docs/rules/vars-on-top> and in
 particular the resources listed on that page about variable hoisting.
 
 Variables that are initialized with a value should be declared before those
