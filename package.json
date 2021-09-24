@@ -1,0 +1,24 @@
+{
+  "name": "silvermine-info",
+  "version": "1.0.0",
+  "description": "Organizational information and coding standards",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "commitlint": "commitlint --from 04206a0",
+    "markdownlint": "markdownlint **/*.md --ignore node_modules",
+    "standards": "npm run markdownlint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pbredenberg/silvermine-info.git"
+  },
+  "author": "Jeremy Thomerson",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pbredenberg/silvermine-info/issues"
+  },
+  "homepage": "https://github.com/pbredenberg/silvermine-info#readme",
+  "devDependencies": {
+    "@silvermine/standardization": "1.2.0"
+  }
+}

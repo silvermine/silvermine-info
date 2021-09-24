@@ -63,7 +63,7 @@ that you have with master.
 For example, imagine this scenario where you created a branch off of master and
 while you were working on it, several new commits were added to master.
 
-```
+```text
 Master:
 
 A   B   C   D   E   F   G   H
@@ -80,7 +80,7 @@ U.
 At this point if you rebased off of master (e.g. `git rebase origin/master`),
 you would end up with this history:
 
-```
+```text
 Master:
 
 A   B   C   D   E   F   G   H
@@ -102,7 +102,7 @@ them to re-review everything in your branch (R2 through U2).
 The better solution is to rebase off of your common commit (C in this example),
 which will give you a history like this:
 
-```
+```text
 Master:
 
 A   B   C   D   E   F   G   H
@@ -173,9 +173,9 @@ merge conflicts with each edit, this process should complete easily.
 We care a great deal about having good commit messages. In fact, we care so much that we
 use commitlint in most of our repos to ensure properly formatted commit messages. Chris
 Beams wrote a good blog post about why good commit messages matter. Please read and apply
-his post: https://chris.beams.io/posts/git-commit/
+his post: <https://chris.beams.io/posts/git-commit/>
 
-It's also worth reading this post: https://fatbusinessman.com/2019/my-favourite-git-commit
+It's also worth reading this post: <https://fatbusinessman.com/2019/my-favourite-git-commit>
 
 Additional notes:
 
@@ -218,7 +218,7 @@ Additional notes:
 Here is an example of a commit we might craft. It explains what and why more
 than how. The how is shown by seeing the code changes with `git show $hash`.
 
-```
+```bash
 feat: Remove flux capacitor from DeLorean (#12345)
 
 The annual corporate meeting will occur on October 3, 2015 this year,
@@ -270,7 +270,7 @@ where breaking the commit up into multiple commits would be better. If a single
 fix or a change to one block of code does fix multiple issues, though, here are
 the formats that are acceptable for the combined commit message:
 
-```
+```bash
 fix: There are only two issues and it fits nicely (#12345, #54321)
 
 The rest of my description goes here ...
@@ -278,7 +278,7 @@ The rest of my description goes here ...
 
 Or where you want to provide details about the fix for each issue independently:
 
-```
+```bash
 feat: Ensure flux capacitor can reach 1.21 gigawatts when needed
 
  * Refs #12345: If the car achieved a speed of `>= 89` MPH while the flux
@@ -296,7 +296,7 @@ feat: Ensure flux capacitor can reach 1.21 gigawatts when needed
 Or where one change resolves multiple issues, and the list of issues is too long
 to put in the title of the commit:
 
-```
+```bash
 feat: Ensure flux capacitor can reach 1.21 gigawatts when needed
 
 In several scenarios the flux capacitor would not reach the required 1.21
