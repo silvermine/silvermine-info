@@ -39,31 +39,6 @@ for (let x of arr1) {
 }
 ```
 
-
-## ES6 Array Prototype Functions
-
-At this time, we prefer the use of [Underscore.js](https://underscorejs.org/) over the
-array helper functions added in ES6 (i.e. `includes`, `find`, `keys`, `entries`, etc.). We
-take this stance because we develop JS apps both for Node.js and many browsers, including
-quite a few legacy browsers that do not support the full range of array functionality.
-Thus, rather than making developers have to stop and think about which functions are
-available with each context switch, we just default to using Underscore.js so that it's
-guaranteed to work in any environment we're targeting.
-
-The exception is the `for ... of` loop structure since TypeScript transpiles it down to
-ES5-compatible code.
-
-Example:
-
-```javascript
-// use
-let a = _.find(arr1, (x) => { return x > 1; });
-
-// instead of
-let a = arr1.find((x) => { return x > 1; });
-```
-
-
 ## Template Literals
 
 Template literals are preferred, but not enforced. The goal is, as always, to
