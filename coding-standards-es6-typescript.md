@@ -46,32 +46,38 @@ make the code as readable as possible. If a template literal makes the code
 _less_ readable, string concatenation should be used instead. For example:
 `` `.${fileName}` `` is less readable than `'.' + fileName`.
 
-The exception to the above is multi-line template literals. These should never
-be used, because of the negative effect on indentation and readability.
+There are two exceptions to the above:
 
-For example, the following would be necessary to ensure no leading spaces on
-the second line, and is not allowed:
+   1. Multi-line template literals. These should never be used, because of the negative
+      effect on indentation and readability.
 
-Example:
+      For example, the following would be necessary to ensure no leading spaces on
+      the second line, and is not allowed:
 
-```javascript
-// This odd indentation is necessary to ensure that there are no leading spaces on
-// the second line, and should be avoided.
-function myFunction() {
-  let str;
+      Example:
 
-  str = `First Line
-second line`;
-}
+      ```javascript
+      // This odd indentation is necessary to ensure that there are no leading spaces on
+      // the second line, and should be avoided.
+      function myFunction() {
+        let str;
 
-// Use this instead
-function myFunction() {
-   let str;
+        str = `First Line
+      second line`;
+      }
 
-   str = 'First Line\n';
-   str = str + 'second line';
-}
-```
+      // Use this instead
+      function myFunction() {
+         let str;
+
+         str = 'First Line\n';
+         str = str + 'second line';
+      }
+      ```
+
+   2. Implicit string conversion. Template literals should not be used solely for implicit
+      conversion to a string. For that, the `String` method should be used instead. For
+      example, `String(someNumber)` should be used instead of `` `${someNumber}` ``.
 
 
 ## async / await
