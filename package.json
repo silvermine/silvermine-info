@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pbredenberg/silvermine-info.git"
+    "url": "git+https://github.com/silvermine/silvermine-info.git"
   },
   "author": "Jeremy Thomerson",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/pbredenberg/silvermine-info/issues"
+    "url": "https://github.com/silvermine/silvermine-info/issues"
   },
-  "homepage": "https://github.com/pbredenberg/silvermine-info#readme",
+  "homepage": "https://github.com/silvermine/silvermine-info#readme",
   "devDependencies": {
     "@silvermine/standardization": "1.2.0"
   }
