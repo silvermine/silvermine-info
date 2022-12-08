@@ -14,7 +14,7 @@ Here are some rules about commits:
 **Commits that contain only code review changes are never allowed.** Let's say
 that you start a branch for a new feature or a bugfix, and that branch contains
 one or more commits. Then you get your work reviewed and the reviewer requests
-changes. You *must rebase* and fix the actual commit that introduced the
+changes. You _must rebase_ and fix the actual commit that introduced the
 problem the reviewer wants you to fix. For example, if he wants you to rename a
 variable or fix a whitespace error, go fix it in the commit that you introduced
 the error (or poorly-named variable) in.
@@ -29,7 +29,7 @@ in one autonomous commit is broken into two or more commits. This makes it very
 hard to retrace the steps that actually led to a piece of code being
 introduced.
 
-*Remember that this "poor developer" that we speak of could be you*. Be kind to
+_Remember that this "poor developer" that we speak of could be you_. Be kind to
 your future self, or to those who succeed you.
 
 **Commits should be for a single piece of work.** Do not make one commit do
@@ -48,14 +48,14 @@ proficient at rebasing if you are not already. If you need help, [Pro
 Git](https://git-scm.com/book/en/v2/) has a good [chapter on
 rebasing](https://git-scm.com/book/en/v2/Git-Tools-Rewriting-History)
 
-**IMPORTANT:** when you rebase for a pull request, *do not rebase off of master
-unless there are merge conflicts*. If you rebase off master between the first
+**IMPORTANT:** when you rebase for a pull request, _do not rebase off of master
+unless there are merge conflicts_. If you rebase off master between the first
 review and the re-review, the reviewer now has to re-review the entire pull
-request rather than just what you changed since he last reviewed the code. *You
+request rather than just what you changed since he last reviewed the code. _You
 should only rebase off of master when it is absolutely necessary due to merge
 conflicts, and even then you should work with the reviewer to know when he
 would like that done. Perhaps it could be done after the review is 100%
-complete.*
+complete._
 
 Instead of rebasing off master, you want to rebase off the last common commit
 that you have with master.
@@ -212,7 +212,7 @@ Additional notes:
      formats them properly in most source control and project management systems.
    * Commit messages should focus more on explaining the "why" than the how.
      The commit itself (the code changes) represent the "how". Someone will be
-     looking at the git history (your message) to figure out *why* you did what you
+     looking at the git history (your message) to figure out _why_ you did what you
      did.
 
 Here is an example of a commit we might craft. It explains what and why more
@@ -224,7 +224,7 @@ feat: Remove flux capacitor from DeLorean (#12345)
 The annual corporate meeting will occur on October 3, 2015 this year,
 and big announcements will be made at that time. However, Marty McFly
 and Doc Brown will both have traveled forward to October 21, 2015, and
-in the pages of *Gray's Sports Almanac* will be copies of the
+in the pages of _Gray's Sports Almanac_ will be copies of the
 announcements made at the annual meeting. When they return to 1985, they
 will unfortunately turn traitor and spread the word of the future
 announcements, which we need to prevent.
