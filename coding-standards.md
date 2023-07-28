@@ -451,15 +451,16 @@ function doSomething(someString, someMixedValue) {
 
 ### Naming
 
-   * **Static** variables are named snake_case  (see [the glossary](#glossary)).
-   * **Constants** (or publicly-accessible static variables) are named all
-     UPPER_SNAKE_CASE (see [the glossary](#glossary)).
-   * **Instance** variables are named using camelCase (see [the glossary](#glossary)).
-   * **Private** and **protected** variables are named using camelCase preceded by an
-     underscore (see [our ES6-specific
-     standards](coding-standards-es6-typescript.md#variable-declarations)).
+   * **Static** variables are named `snake_case` (see [the glossary](#glossary)).
+   * **Constants** (publicly-accessible, readonly, static variables) are named all
+     `UPPER_SNAKE_CASE` (see [the glossary](#glossary)).
+   * **Instance** variables are named using `camelCase` (see [the glossary](#glossary)).
+   * **Private** and **protected** *variables* are named using `camelCase` preceded by an
+     underscore (see [our ES6-specific standards](coding-standards-es6-typescript.md#variable-declarations)).
+   * **Private** and **Protected** *constants* (private or protected readonly static variables)
+    are prefixed with an underscore, and named all `_UPPER_SNAKE_CASE` (see [the glossary](#glossary)).
    * **Scoped** variables (those appearing within a function or other control structure)
-     are also named with camelCase.
+     are also named with `camelCase`.
 
 Other general principles to use in naming your variables:
 
