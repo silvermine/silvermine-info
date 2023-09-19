@@ -354,6 +354,32 @@ console.log(multiply(2, 2)); // 4
 ```
 
 
+## Error Handling
+
+Typically, it's preferred that when handling custom errors, the error checking is done
+using `instanceof`. For example, we might check an error like this:
+
+```typescript
+try {
+   doSomething();
+} catch(err) {
+   if (err instanceof CustomError) {
+      console.error('Something bad happened!!')
+   }
+}
+```
+
+Using `instanceof` is typically better than simply checking the string value of a field
+on the error object (e.g. `err.code`, `err.message`, etc.) because when comparing strings
+we could 1) easily check the wrong field, 2) mistakenly compare the right field against
+the wrong value, or 3) library code could change the name of or expected value of this
+field, which could easily be overlooked. However, if your code is being transpiled to ES5,
+then you'll likely want to _avoid using `instanceof`_ because `instanceof` often does not
+work in code transpiled to ES5 as seen
+[here](https://github.com/Microsoft/TypeScript/issues/13965) and
+[here](https://medium.com/@xpl/javascript-deriving-from-error-properly-8d2f8f315801).
+
+
 ## Types
 
 In TypeScript, we disallow all implicit `any`s (see
