@@ -383,7 +383,7 @@ work in code transpiled to ES5 as seen
 ## Types
 
 In TypeScript, we disallow all implicit `any`s (see
-[TypeScript Deep Dive](https://basarat.gitbooks.io/typescript/docs/options/noImplicitAny.html)).
+[TypeScript Deep Dive](https://basarat.gitbook.io/typescript/intro/noimplicitany)).
 
 In addition, if a variable is part of the API of the function/module (i.e. it is exported
 or returned), it must have an **explicit** type. Also, the return types of functions
