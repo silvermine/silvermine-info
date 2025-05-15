@@ -9,13 +9,12 @@ any event, if you are contributing to our codebase, it is your responsibility
 to follow these standards. They will be enforced in code reviews.
 
 
-## ES6+ / TypeScript Specific Standards
+## Language Specific Standards
 
-Many of the standards written in this document were written for our legacy PHP and
-JavaScript (ES5 and earlier) codebases. For our coding standards specific to
-ES6+ / TypeScript, including what operators / patterns we allow or prohibit in our
-codebase, please see our [coding standards specific to ES6+ /
-TypeScript](coding-standards-es6-typescript.md).
+The standards defined in this document are the core principles for our code formatting.
+Additional language-specific standards are available in the following documents:
+
+   * [TypeScript](coding-standards/typescript.md)
 
 
 ## Abbreviations

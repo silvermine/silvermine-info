@@ -1,10 +1,9 @@
-# Silvermine Coding Standards Specific to ES6+ / TypeScript
+# Silvermine Coding Standards Specific to TypeScript
 
 ## Variable Declarations
 
-The keyword `var` should be avoided in all new code that targets ES6+. Instead, `let`
-and `const` should always be used. If the variable will not be changed, always use
-`const`.
+The keyword `var` should be avoided. Instead, `let` and `const` should always be used. If
+the variable will not be changed, always use `const`.
 
 Consecutive variable declarations should be grouped in one statement. However, multiple
 statements can be used if there is other code between them. The exception to this is
