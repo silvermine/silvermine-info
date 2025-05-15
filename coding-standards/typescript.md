@@ -277,7 +277,7 @@ let square = a => { return a * a; };
 
 Reason: We always favor explicit syntax in our codebase. Banning implicit returns makes it
 more readily apparent that the function is returning a value and less likely that someone
-inadvertantly changes a return type by performing an operation and forgetting that the
+inadvertently changes a return type by performing an operation and forgetting that the
 operation is automatically returned if no curly braces surround the statement.
 
 Example:
@@ -437,7 +437,7 @@ function square(x: number): number {
 ### General Types
 
 Never use the types `Number`, `String`, `Boolean`, or `Object`. Instead, use the lower
-case, primative version.
+case, primitive version.
 
 Example:
 
