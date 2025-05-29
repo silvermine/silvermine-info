@@ -1,10 +1,9 @@
-# Silvermine Coding Standards Specific to ES6+ / TypeScript
+# Silvermine Coding Standards Specific to TypeScript
 
 ## Variable Declarations
 
-The keyword `var` should be avoided in all new code that targets ES6+. Instead, `let`
-and `const` should always be used. If the variable will not be changed, always use
-`const`.
+The keyword `var` should be avoided. Instead, `let` and `const` should always be used. If
+the variable will not be changed, always use `const`.
 
 Consecutive variable declarations should be grouped in one statement. However, multiple
 statements can be used if there is other code between them. The exception to this is
@@ -41,18 +40,18 @@ for (let x of arr1) {
 
 ## Template Literals
 
-Template literals are preferred, but not enforced. The goal is, as always, to
-make the code as readable as possible. If a template literal makes the code
-_less_ readable, string concatenation should be used instead. For example:
-`` `.${fileName}` `` is less readable than `'.' + fileName`.
+Template literals are preferred, but not enforced. The goal is, as always, to make the
+code as readable as possible. If a template literal makes the code _less_ readable, string
+concatenation should be used instead. For example: `` `.${fileName}` `` is less readable
+than `'.' + fileName`.
 
 There are two exceptions to the above:
 
    1. Multi-line template literals. These should never be used, because of the negative
       effect on indentation and readability.
 
-      For example, the following would be necessary to ensure no leading spaces on
-      the second line, and is not allowed:
+      For example, the following would be necessary to ensure no leading spaces on the
+      second line, and is not allowed:
 
       Example:
 
@@ -82,14 +81,9 @@ There are two exceptions to the above:
 
 ## async / await
 
-**Allowed Sparingly**
-
-We are still forming an opinion on the use of these operators. For now, we have
-decided to use them sparingly and prefer the use of Promises.
-
-The async/await style can easily lead to unintentionally synchronous code.
-
-Example:
+`async/await` are typically preferred over Promise `.then()` chaining due to readability.
+That said, the async/await style can easily lead to unintentionally synchronous code. For
+example:
 
 ```javascript
 async function foo() {
@@ -105,13 +99,14 @@ The above code would wait for `asyncFunc1` to return before running
 
 ```javascript
 function foo() {
-   return Promise.all([ asyncFunc1(), asyncFunc2() ])
-      .then(([ a, b ]) => { return a + b; });
+   const [ a, b ] = await Promise.all([ asyncFunc1(), asyncFunc2() ])
+
+   return a + b;
 }
 ```
 
-This example would be more performant, as `asyncFunc1` and `asyncFunc2` are run
-concurrently. This intricacy is easily lost in reading the `async/await` example.
+This revised example is more performant, as `asyncFunc1` and `asyncFunc2` are run
+concurrently.
 
 
 ## Destructuring
@@ -170,28 +165,38 @@ console.log(dimensions); // { width: 15, height: 20, somethingIForgotAbout: 'oop
 
 ### Array Destructuring With Ignores
 
-**Not Allowed**
+**Allowed with caution**
 
-Reason: Readability is negatively impacted; it's easy to miss the ignored value.
+Reason: Readability is negatively impacted; it's easy to miss the ignored value. However,
+it can be useful when using `Object.entries()`.
 
 Example:
 
 ```javascript
-Promise.all([ p1, p2 ]).then(([ , r2 ]) => { console.log(r2); });
+const config = {
+   prop1: 'text',
+   prop2: 42,
+};
+
+const numericProps = Object.entries(params)
+   .filter(([ , value ]) => {
+      return isNumber(value); // compare to `isNumber(entry[1])`
+   });
 ```
 
 
 ### Renaming While Destructuring
 
-**Not Allowed**
-
-Reason: The function of the code is not readily apparent.
+**Allowed**
 
 Example:
 
 ```javascript
-const obj = { someProperty: 'some value'},
-      { someProperty: someVariable } = obj;
+function otherFunction() {
+   return { someProperty: 'some value' };
+}
+
+const { someProperty: someVariable } = otherFunction();
 
 console.log(someVariable); // 'some value'
 ```
@@ -272,7 +277,7 @@ let square = a => { return a * a; };
 
 Reason: We always favor explicit syntax in our codebase. Banning implicit returns makes it
 more readily apparent that the function is returning a value and less likely that someone
-inadvertantly changes a return type by performing an operation and forgetting that the
+inadvertently changes a return type by performing an operation and forgetting that the
 operation is automatically returned if no curly braces surround the statement.
 
 Example:
@@ -331,7 +336,11 @@ class Adder {
 
 ## Iterators and Generators
 
-**Not Allowed**
+**Allowed with caution**
+
+Reason: Iterators and generators introduce complexity that can often be handled using a
+different interface design. However, they can be useful when writing library functions
+that handle async pagination.
 
 Example:
 
@@ -428,7 +437,7 @@ function square(x: number): number {
 ### General Types
 
 Never use the types `Number`, `String`, `Boolean`, or `Object`. Instead, use the lower
-case, primative version.
+case, primitive version.
 
 Example:
 
