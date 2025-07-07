@@ -15,6 +15,7 @@ The standards defined in this document are the core principles for our code form
 Additional language-specific standards are available in the following documents:
 
    * [TypeScript](coding-standards/typescript.md)
+   * [Swift](coding-standards/swift.md)
 
 
 ## Abbreviations
