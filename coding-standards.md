@@ -18,6 +18,7 @@ Additional language-specific standards are available in the following documents:
    * [Swift](coding-standards/swift.md)
    * [Rust](coding-standards/rust.md)
    * [SQL](coding-standards/sql.md)
+   * [Kotlin](coding-standards/kotlin.md)
 
 
 ## Abbreviations
