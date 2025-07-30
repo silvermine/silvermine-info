@@ -17,6 +17,7 @@ Additional language-specific standards are available in the following documents:
    * [TypeScript](coding-standards/typescript.md)
    * [Swift](coding-standards/swift.md)
    * [Rust](coding-standards/rust.md)
+   * [SQL](coding-standards/sql.md)
 
 
 ## Abbreviations
