@@ -64,6 +64,13 @@ or similar entity is an issue. However, keep in mind the following principles:
         };
      ```
 
+### Special Cases
+
+The following items are not acronyms, but we choose to capitalize them anyway:
+
+   * `ID` - The abbreviation for "identifier", e.g. `userID`
+
+
 ## Identification
 
 Identify yourself by a public email address (such as gmail, etc) in all commit
