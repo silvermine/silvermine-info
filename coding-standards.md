@@ -16,6 +16,7 @@ Additional language-specific standards are available in the following documents:
 
    * [TypeScript](coding-standards/typescript.md)
    * [Swift](coding-standards/swift.md)
+   * [Kotlin](coding-standards/kotlin.md)
 
 
 ## Abbreviations
