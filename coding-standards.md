@@ -490,6 +490,50 @@ Other general principles to use in naming your variables:
      reference as short as possible. Define and initialize it as close as possible
      to where it is used.
 
+Example:
+
+```javascript
+// naming.js
+
+// Constants (UPPER_SNAKE_CASE)
+const MAX_RETRY_ATTEMPTS = 5,
+
+class UserManager {
+   static default_role = "user"; // Static variables (snake_case)
+
+   constructor(config) {
+      this.userName = config.userName; // Instance variables (camelCase)
+      this.isActive = true; // True/false named boolean
+      this._apiKey = config.apiKey // Private instance variables (camelCase with leading underscore)
+   }
+
+   processUsers(userList) {
+      let totalProcessed = 0, // Scoped variables (camelCase)
+      hasErrors = false;
+
+      let activeUsers = ["navi", "mei"], // Array names are plural
+
+      // Boolean variables naturally imply true/false
+      let isValidUser = false,
+
+      // Correct: descriptive and specific names
+      let userRegistrationTimestamp = Date.now();
+      // Wrong: non-descriptive names
+      let x = getUser();
+      let other = getUser();
+
+      // Wrong: variables differentiated only by capitalization
+      let user = getUser();
+      let User = getUserClass();
+      // ...
+  }
+
+   // Private method (camelCase with leading underscore)
+   _generateToken() {
+      // ...
+   }
+}
+```
 
 ### Scoping
 
