@@ -491,6 +491,53 @@ Other general principles to use in naming your variables:
      reference as short as possible. Define and initialize it as close as possible
      to where it is used.
 
+Example:
+
+```typescript
+interface ApiConfig {
+   baseURL: string;
+   urlPath: string;
+}
+
+class ApiClient {
+   private _baseURL: string; // private prefixed with underscore camelCase
+   protected _urlPath: string; // protected prefixed with underscore camelCase
+   static request_count: number = 0; // static variable snake_case
+   private readonly _MAX_RETRY_ATTEMPTS = 5; // constants UPPER_SNAKE_CASE, prefixed with underscore to denote private
+
+   constructor(config: ApiConfig) {
+      this._baseURL = config.baseURL;
+      this._urlPath = config.urlPath;
+   }
+
+   request(endpoint: string) {
+      ApiClient.request_count++;
+      // variable declarations grouped together
+      let isAuthenticated = false, // boolean variables naturally imply true/false
+         requestHeaders = ["Content-Type", "Authorization"]; // array names are plural
+
+      // correct: descriptive and specific names
+      const apiRequestTimestamp = Date.now();
+      // wrong: non-descriptive names
+      const s = Date.now();
+      const e = Date.now();
+
+      // wrong: variables differentiated only by capitalization
+      const uri = this._baseURL + this._urlPath;
+      const URI = this._baseURL + this._urlPath + "?q=...";
+      // ...
+   }
+
+   static increment_requestCount(): number { // static method snake_case
+      return ApiClient.request_count++;
+   }
+
+   // private method (camelCase with leading underscore)
+   private _generateToken(): string {
+      return "token";
+   }
+}
+```
 
 ### Scoping
 
