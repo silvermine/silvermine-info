@@ -363,6 +363,54 @@ console.log(multiply(2, 2)); // 4
 ```
 
 
+## Nullish Coalescing (`??`) vs Logical OR (`||`)
+
+**Use `??` when you want to preserve falsy values like `0`, `''`, or `false`.**
+
+The nullish coalescing operator (`??`) returns the right-hand operand only when the
+left-hand operand is `null` or `undefined`. The logical OR operator (`||`) returns the
+right-hand operand for any falsy value (`null`, `undefined`, `0`, `''`, `false`, `NaN`).
+
+### When to Use `??`
+
+Use `??` when `0`, `''`, or `false` are valid values that should not trigger the fallback:
+
+```typescript
+// User explicitly set volume to 0 - we want to keep it
+const volume = userSettings.volume ?? 100; // 0 stays 0
+const volume = userSettings.volume || 100; // 0 becomes 100 (wrong!)
+
+// Empty string is a valid input
+const name = inputValue ?? 'default'; // '' stays ''
+const name = inputValue || 'default'; // '' becomes 'default' (wrong!)
+
+// Boolean false is intentional
+const isEnabled = config.feature ?? true; // false stays false
+const isEnabled = config.feature || true; // false becomes true (wrong!)
+```
+
+### When to Use `||`
+
+Use `||` when you want to fall back for any falsy value:
+
+```typescript
+// Treat empty string same as missing
+const displayName = user.nickname || user.fullName || 'Anonymous';
+
+// Coerce falsy to default
+const count = items.length || 0;
+```
+
+### Summary
+
+| Operator | Falls back on                                  |
+|----------|------------------------------------------------|
+| `??`     | `null`, `undefined`                            |
+| `\|\|`   | `null`, `undefined`, `0`, `''`, `false`, `NaN` |
+
+**Default to `??`** unless you explicitly want falsy coercion.
+
+
 ## Error Handling
 
 Typically, it's preferred that when handling custom errors, the error checking is done
