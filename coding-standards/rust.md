@@ -174,13 +174,13 @@ anyway.
 Use this command to run linting and formatting checks:
 
 ```sh
-cargo clippy --workspace --all-targets --all-features -- -D warnings && cargo fmt -- --check
+cargo clippy --workspace --all-targets --all-features -- -D warnings && cargo fmt --all -- --check
 ```
 
 Use this command to apply the linting and formatting auto-fixes:
 
 ```sh
-cargo clippy --workspace --all-targets --all-features --fix && cargo fmt
+cargo clippy --workspace --all-targets --all-features --fix && cargo fmt --all
 ```
 
 Note: Because `clippy` and `rustfmt` are separate but complementary tools, it is possible
@@ -213,8 +213,8 @@ Add a `.cargo/config.toml` file to the root of your project with the following c
 [alias]
 lint-clippy = "clippy --workspace --all-targets --all-features -- -D warnings"
 fix-clippy = "clippy --workspace --all-targets --all-features --fix"
-lint-fmt = "fmt -- --check"
-fix-fmt = "fmt"
+lint-fmt = "fmt --all -- --check"
+fix-fmt = "fmt --all"
 ```
 
 Unfortunately, the `alias` config does not support shell commands or shell operators like
