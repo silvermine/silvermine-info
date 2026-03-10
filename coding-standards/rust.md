@@ -180,7 +180,7 @@ cargo clippy --workspace --all-targets --all-features -- -D warnings && cargo fm
 Use this command to apply the linting and formatting auto-fixes:
 
 ```sh
-cargo clippy --workspace --all-targets --all-features --fix && cargo fmt --all
+cargo clippy --workspace --all-targets --all-features --fix --allow-dirty --allow-staged && cargo fmt --all
 ```
 
 Note: Because `clippy` and `rustfmt` are separate but complementary tools, it is possible
@@ -212,7 +212,7 @@ Add a `.cargo/config.toml` file to the root of your project with the following c
 ```toml
 [alias]
 lint-clippy = "clippy --workspace --all-targets --all-features -- -D warnings"
-fix-clippy = "clippy --workspace --all-targets --all-features --fix"
+fix-clippy = "clippy --workspace --all-targets --all-features --fix --allow-dirty --allow-staged"
 lint-fmt = "fmt --all -- --check"
 fix-fmt = "fmt --all"
 ```
