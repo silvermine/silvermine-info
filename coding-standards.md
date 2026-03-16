@@ -140,7 +140,7 @@ Again, the key is readability and clarity.
         the braces or suffer a silent and subtle failure.
 
 You can note other advantages to both of these rules [in K&R Variant
-1TBS](https://en.wikipedia.org/wiki/Indent_style#Variant:_1TBS_.28OTBS.29)
+1TBS](https://en.wikipedia.org/wiki/Indentation_style#One_True_Brace)
 
 
 ### Indentation
