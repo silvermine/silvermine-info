@@ -45,6 +45,56 @@ use_try_shorthand = true
 These exceptions are codified in the `rustfmt.toml` file specified in the "Project
 Configuration" section below.
 
+## Naming Conventions
+
+### Acronyms in Type Names
+
+The following convention extends the general Silvermine naming standards:
+
+When an acronym appears in a type name (struct, enum, trait, or type alias), write the
+acronym in all capital letters. This aligns with our general standard that acronyms should
+be written in all caps, and takes precedence over Rust's community convention of
+capitalizing only the first letter of an acronym.
+
+```rust
+// ✅ Good
+struct JSONError { /* ... */ }
+enum HTTPMethod { GET, POST, PUT, DELETE }
+enum Error { MalformedJSON, InvalidURL}
+trait URLParser { /* ... */ }
+type HTMLElement = String;
+
+// ❌ Bad - acronyms should be fully capitalized
+struct JsonError { /* ... */ }
+enum HttpMethod { Get, Post, Put, Delete }
+trait UrlParser { /* ... */ }
+type HtmlElement = String;
+```
+
+When an acronym appears in a variable or function name, it follows the same rules as
+the general Silvermine naming standards: the acronym is all caps unless it is the first
+"word" in the name, in which case it is all lowercase.
+
+```rust
+// ✅ Good
+let api_config = Config::new(); // First word: all lowercase
+let user_api_url = "..."; // Not first word: lowercase because of snake_case
+fn parse_json_response() { /* ... */ } // snake_case: all lowercase
+
+// In struct fields:
+struct Request {
+   api_key: String, // snake_case: all lowercase
+}
+```
+
+Note: This convention conflicts with Clippy's default `upper_case_acronyms` lint. To
+suppress this lint, add the following `allow` attribute to your crate root (`main.rs` or
+`lib.rs`):
+
+```rust
+#![allow(clippy::upper_case_acronyms)]
+```
+
 ## Error Handling
 
 Use the [`thiserror`][thiserror] crate to define error types for your application/library.
@@ -166,8 +216,7 @@ when switching between editing Rust and other languages.
 
 Those exceptions are codified in the `rustfmt.toml` file specified below. Unfortunately,
 `clippy`'s config file format is "unstable" and only allows configuration with command
-line flags. However, we do not override the default `clippy` linting rules right now
-anyway.
+line flags.
 
 #### Linting Commands
 
