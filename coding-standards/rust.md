@@ -310,15 +310,20 @@ Public (non-internal) Rust projects should also specify a `license` and `reposit
 
 #### Dependencies
 
-   * Always pin to exact semver versions. Do not use caret, tilde, wildcard, or
-     comparison requirements
+   * Always specify as `major.minor.patch` versions (e.g. `"2.3.0"`). Do not use caret, tilde,
+     wildcard, or comparison requirements
    * When you must use a `git` dependency, avoid using branch dependencies in production
      code. Instead, specify a tag or hash version
+
+> **Important:** In Cargo, writing `"0.1.12"` is not true exact pinning — it actually
+> means `>=0.1.12, <0.2.0` (see [Cargo docs][cargo-deps]). We rely on committing the
+> `Cargo.lock` file (never gitignored) to lock the actual resolved versions. This
+> ensures all developers and CI pipelines use identical dependencies.
 
 ```toml
 [dependencies]
 
-# ✅ Good - Uses exact version
+# ✅ Good - Major.minor.patch (locked via Cargo.lock)
 tauri-plugin-os = "2.3.0"
 
 # ✅ Good - Uses a hash
@@ -346,6 +351,7 @@ Follow the Rust community standard:
 blocks are annotated with `no_run` to prevent them from executing when running `cargo
 test`.**
 
+[cargo-deps]: https://doc.rust-lang.org/cargo/reference/specifying-dependencies.html#specifying-dependencies-from-cratesio
 [tauri]: https://tauri.app/
 [clippy]: https://doc.rust-lang.org/clippy/
 [rustfmt]: https://github.com/rust-lang/rustfmt
