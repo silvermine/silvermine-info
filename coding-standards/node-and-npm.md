@@ -71,6 +71,64 @@ version of NPM.
 The standard NPM version is enforced in each project via our standard
 [check-node-version][check-node-version] script.
 
+### Package Management for Tauri Plugins
+
+Tauri plugins are an exception to the exact-version rule. The `@tauri-apps/api` package
+**must** be declared as a `peerDependency` with a permissive caret range (e.g. `^2.9.0`).
+
+#### Why a peer dependency instead of a production dependency?
+
+When a plugin lists `@tauri-apps/api` as a production dependency, NPM may install a
+separate, nested copy inside the plugin's `node_modules`. If that copy differs from the
+version the host app uses, subtle runtime bugs can occur. Declaring it as a `peerDependency`
+ensures the plugin shares the host app's copy.
+
+Tauri's own first-party plugins use production dependencies, but the dependency is
+automatically bumped as part of their release process. Unofficial third-party plugins like
+ours do not benefit from this and cannot keep in lockstep with Tauri's releases, making a
+peer dependency the correct choice.
+
+#### Why a wide caret range?
+
+Using a permissive caret range allows consuming applications to use any compatible version
+of `@tauri-apps/api` without the plugin causing an install failure or forcing a version
+upgrade. The minimum version should reflect the oldest version the plugin is known to work
+with. If we discover a specific incompatibility, we can raise the minimum while still
+accepting all newer minor and patch releases.
+
+✅ Good:
+
+```json
+{
+   "peerDependencies": {
+      "@tauri-apps/api": "^2.9.0"
+   }
+}
+```
+
+❌ Bad — production dependency (causes nested duplicate):
+
+```json
+{
+   "dependencies": {
+      "@tauri-apps/api": "2.9.1"
+   }
+}
+```
+
+❌ Bad — exact peer dependency (breaks consuming projects on a different minor version):
+
+```json
+{
+   "peerDependencies": {
+      "@tauri-apps/api": "2.9.1"
+   }
+}
+```
+
+This exception applies **only** to `@tauri-apps/api` in `peerDependencies`. All other
+dependency types (`dependencies`, `devDependencies`) in Tauri plugins should continue to use
+exact versions as described above.
 
 [nvm]: https://github.com/nvm-sh/nvm
 [nvmrc]: https://github.com/silvermine/standardization/blob/master/.nvmrc
