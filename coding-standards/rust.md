@@ -2,7 +2,7 @@
 
 Silvermine's standard Rust version and edition is:
 
-   * Version: **`1.89.0`**
+   * Version: **`1.94.0`**
    * Edition: **`2024`**
 
 ## Code Standards
@@ -182,7 +182,7 @@ Create a `rust-toolchain` file in the root of the project with the following con
 
 ```toml
 [toolchain]
-channel = "1.88.0"
+channel = "1.94.0"
 components = [
    "rustfmt",
    "clippy"
