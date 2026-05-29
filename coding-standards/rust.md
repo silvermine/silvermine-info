@@ -2,7 +2,7 @@
 
 Silvermine's standard Rust version and edition is:
 
-   * Version: **`1.89.0`**
+   * Version: **`1.94.0`**
    * Edition: **`2024`**
 
 ## Code Standards
@@ -182,7 +182,7 @@ Create a `rust-toolchain` file in the root of the project with the following con
 
 ```toml
 [toolchain]
-channel = "1.88.0"
+channel = "1.94.0"
 components = [
    "rustfmt",
    "clippy"
@@ -310,15 +310,21 @@ Public (non-internal) Rust projects should also specify a `license` and `reposit
 
 #### Dependencies
 
-   * Always specify as `major.minor.patch` versions (e.g. `"2.3.0"`). Do not use caret, tilde,
-     wildcard, or comparison requirements
+   * Always specify a full `major.minor.patch` version (e.g. `"2.3.0"`), never a partial
+     version like `"2"` or `"2.3"`
+   * Do not use tilde (`~`), wildcard (`*`), or comparison (`>=`, `<`) requirements, and
+     do not write an explicit caret (`^`). A bare `"2.3.0"` is already an implicit caret
+     requirement (`^2.3.0`); that is expected and fine — reproducibility comes from the
+     `Cargo.lock` file, not from the version requirement (see the note below)
    * When you must use a `git` dependency, avoid using branch dependencies in production
      code. Instead, specify a tag or hash version
 
-> **Important:** In Cargo, writing `"0.1.12"` is not true exact pinning — it actually
-> means `>=0.1.12, <0.2.0` (see [Cargo docs][cargo-deps]). We rely on committing the
-> `Cargo.lock` file (never gitignored) to lock the actual resolved versions. This
-> ensures all developers and CI pipelines use identical dependencies.
+> **Important:** A `major.minor.patch` version is not true exact pinning. In Cargo,
+> writing `"2.3.0"` means `^2.3.0` (i.e. `>=2.3.0, <3.0.0`), and `"0.1.12"` means
+> `>=0.1.12, <0.2.0` (see [Cargo docs][cargo-deps]). We do not write `=2.3.0` to force an
+> exact match; instead we rely on committing the `Cargo.lock` file (never gitignored) to
+> lock the actual resolved versions. This ensures all developers and CI pipelines use
+> identical dependencies.
 
 ```toml
 [dependencies]
